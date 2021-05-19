@@ -47,10 +47,12 @@ endif()
 
 set(SOURCES
     source/FPSlider.cpp
+    source/FancySlider.cpp
     )
 
 set(HEADERS
     include/QTWC/FPSlider.h
+    include/QTWC/FancySlider.h
     )
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})

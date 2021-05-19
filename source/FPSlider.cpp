@@ -76,6 +76,10 @@ namespace QTWC {
 		}
 	}
 
+	float FPSlider::getCurrentValue() {
+		return mRangeBegin + (this->value() * mStepSize); 
+	}
+
 }
 
 

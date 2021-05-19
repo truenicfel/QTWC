@@ -60,6 +60,13 @@ namespace QTWC {
 		FPSlider(Qt::Orientation orientation, int rangeBegin, int rangeEnd, 
 			float stepSize, QWidget* parent = nullptr);
 
+		/**
+		 * Get the current slider value.
+		 *
+		 * @return the current slider value.
+		 */
+		float getCurrentValue();
+
 		virtual ~FPSlider() = default;
 
 		FPSlider(const FPSlider&) = default;
