@@ -10,7 +10,7 @@
 
 namespace QTWC {
 
-	FancySlider::FancySlider(int rangeBegin, int rangeEnd, float stepSize)
+	FancySlider::FancySlider(int rangeBegin, int rangeEnd, float stepSize, const std::string& title)
 		: mSlider(new FPSlider(Qt::Orientation::Horizontal, rangeBegin, rangeEnd, stepSize))
 		, mValueDisplay(new QLabel())
 	{
@@ -20,13 +20,13 @@ namespace QTWC {
 		outerLayout->setSpacing(0);
 
 		// title label (first row of outerLayout)
-		QLabel* title = new QLabel(tr("Scale Height"));
-		title->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+		QLabel* titleLabel = new QLabel(tr(title.c_str()));
+		titleLabel->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 		
 		// second row of outer layout root widget
 		QWidget* secondRowRootWidget = new QWidget();
 		// this will be added to outer layout alongside title
-		outerLayout->addWidget(title);
+		outerLayout->addWidget(titleLabel);
 		outerLayout->addWidget(secondRowRootWidget);
 
 		// second row root widget will be the parent widget for the horizontal layout

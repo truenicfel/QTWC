@@ -1,5 +1,7 @@
 #include <QWidget>
 
+#include <string>
+
 #include "QTWC/FPSlider.h"
 
 class QVBoxLayout;
@@ -13,7 +15,7 @@ namespace QTWC {
 	 * Shows the current value of the slider in a textbox and
 	 * gives the slider a title.
 	 *
-	 * This uses the FPSlider 
+	 * This uses the FPSlider and height is set to a maximum of 80.
 	 */
 	class FancySlider : public QWidget {
 
@@ -28,7 +30,7 @@ namespace QTWC {
 		 * @param rangeEnd see FPSlider
 		 * @param stepSize see FPSlider
 		 */
-		FancySlider(int rangeBegin, int rangeEnd, float stepSize);
+		FancySlider(int rangeBegin, int rangeEnd, float stepSize, const std::string&);
 
 		~FancySlider() = default;
 
