@@ -23,12 +23,15 @@ project(${LIBRARY_NAME}
 
 set(QT_MINIMUM_VERSION 5.9.0)
 
-if(NOT DEFINED ENV{QTDIR})
-	MESSAGE(STATUS "QTDIR environment variable not set. Be sure to set the QTDIR
-	cmake cache variable to the Qt root install location")
+
+
+set(QTDIR "" CACHE STRING "Qt install path")
+
+
+if("${QTDIR}" STREQUAL "")
+	message(FATAL_ERROR "QTDIR variable not set! Define with -DQTDIR:String=[PATH_TO_QT]")
 endif()
 
-set(QTDIR $ENV{QTDIR} CACHE STRING "Qt install path")
 list(APPEND CMAKE_PREFIX_PATH ${QTDIR})
 
 # Find the necessary Qt5 modules
