@@ -67,6 +67,13 @@ namespace QTWC {
 		 */
 		float getCurrentValue();
 
+		/**
+		 * Set the current slider value.
+		 *
+		 * @param value the value to set (illegal values get clamped).
+		 */
+		void setCurrentValue(float value);
+
 		virtual ~FPSlider() = default;
 
 		FPSlider(const FPSlider&) = default;

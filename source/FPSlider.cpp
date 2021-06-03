@@ -80,6 +80,12 @@ namespace QTWC {
 		return mRangeBegin + (this->value() * mStepSize); 
 	}
 
+	void FPSlider::setCurrentValue(float value) {
+		// subtract such that value is within underlying slider range
+		// set value takes care of clamping
+		this->setValue((value - mRangeBegin) / mStepSize);
+	}
+
 }
 
 
