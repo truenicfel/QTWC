@@ -30,9 +30,9 @@ namespace QTWC {
 		 * @param rangeEnd see FPSlider
 		 * @param stepSize see FPSlider
 		 */
-		FancySlider(int rangeBegin, int rangeEnd, float stepSize, const std::string&);
+		FancySlider(float rangeBegin, float rangeEnd, float stepSize, const std::string&);
 
-		~FancySlider() = default;
+		~FancySlider() = default ;
 
 		/**
 		 * Get the slider for setting up connections.
@@ -56,6 +56,12 @@ namespace QTWC {
 		 * Displays the current slider value.
 		 */
 		QLabel* mValueDisplay;
+
+		/**
+		 * The length of the substring that is cut to make
+		 * the value visible.
+		 */
+		int mValueDisplaySubstringLength;
 
 	};
 

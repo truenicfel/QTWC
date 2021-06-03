@@ -10,9 +10,10 @@
 
 namespace QTWC {
 
-	FancySlider::FancySlider(int rangeBegin, int rangeEnd, float stepSize, const std::string& title)
+	FancySlider::FancySlider(float rangeBegin, float rangeEnd, float stepSize, const std::string& title)
 		: mSlider(new FPSlider(Qt::Orientation::Horizontal, rangeBegin, rangeEnd, stepSize))
 		, mValueDisplay(new QLabel())
+		, mValueDisplaySubstringLength(4)
 	{
 		// outer layout
 		QVBoxLayout* outerLayout = new QVBoxLayout(this);
@@ -33,9 +34,18 @@ namespace QTWC {
 		QHBoxLayout* inner = new QHBoxLayout(secondRowRootWidget);
 		// this will contain the slider and a qlabel which displays the current slider value
 		// the initial text is the inital value but only 4 digits
+		// in case the step size is exceptionally small this is modified
+		if (stepSize < 0.001) {
+			mValueDisplaySubstringLength = 8;
+			// modify the font to accomadate larger value
+			QFont valueDisplayFont = mValueDisplay->font();
+			valueDisplayFont.setPointSize(7);
+			mValueDisplay->setFont(valueDisplayFont);
+		}
 		std::string initialText = std::to_string(mSlider->getCurrentValue());
-		initialText = initialText.substr(0, 4);
+		initialText = initialText.substr(0, mValueDisplaySubstringLength);
 		mValueDisplay->setText(tr(initialText.c_str()));
+		
 		// now add the widgets
 		inner->addWidget(mSlider);
 		inner->addWidget(mValueDisplay);
@@ -57,7 +67,7 @@ namespace QTWC {
 	void FancySlider::updateValueDisplay(float value) {
 		// cut 4 digits
 		std::string text = std::to_string(value);
-		text = text.substr(0, 4);
+		text = text.substr(0, mValueDisplaySubstringLength);
 		mValueDisplay->setText(tr(text.c_str()));
 		mValueDisplay->update();
 	}
