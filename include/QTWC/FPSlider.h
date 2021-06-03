@@ -7,11 +7,15 @@ namespace QTWC {
 	/**
 	 * Extension to QSlider to allow for floating point sliders.
 	 * 
-	 * Note: 
+	 * Notes:
 	 *	Although some safety measures are implemented it might not be possible
 	 *  to use all the slider modification methods available in QSlider. setRange
 	 *  and setTickPosition should be safe to use. All others that influence the
 	 *	slider range and values might be unsafe.
+	 *
+	 *	Furthermore the underlying range of the int slider should not exceed the
+	 *	maximum value a float can hold. Otherwise this will result in undefined
+	 *	behaviour.
 	 */
 	class FPSlider: public QSlider {
 
@@ -57,7 +61,7 @@ namespace QTWC {
 		 * @param stepSize: The size of one step of the slider (must be smaller than or equal to rangeEnd-rangeBegin).
 		 * @param parent pointer to the parent widget.
 		 */
-		FPSlider(Qt::Orientation orientation, int rangeBegin, int rangeEnd, 
+		FPSlider(Qt::Orientation orientation, float rangeBegin, float rangeEnd,
 			float stepSize, QWidget* parent = nullptr);
 
 		/**
@@ -134,7 +138,7 @@ namespace QTWC {
 		 *
 		 * @param rangeEnd the upper end of the slider.
 		 */
-		void initializeFPSlider(int rangeEnd);
+		void initializeFPSlider(float rangeEnd);
 
 		/**
 		 * Helper to wrap various calls to connect().
@@ -150,7 +154,7 @@ namespace QTWC {
 		/**
 		 * The lowest value of the slider.
 		 */
-		int mRangeBegin;
+		float mRangeBegin;
 
 	};
 }

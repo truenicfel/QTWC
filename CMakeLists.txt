@@ -23,8 +23,6 @@ project(${LIBRARY_NAME}
 
 set(QT_MINIMUM_VERSION 5.9.0)
 
-
-
 set(QTDIR "" CACHE STRING "Qt install path")
 
 
@@ -50,8 +48,7 @@ endif()
 
 set(SOURCES
     source/FPSlider.cpp
-    source/FancySlider.cpp
-    )
+    source/FancySlider.cpp)
 
 set(HEADERS
     include/QTWC/FPSlider.h

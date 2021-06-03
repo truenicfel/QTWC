@@ -22,7 +22,7 @@ namespace QTWC {
 		setupConnections();
 	}
 
-	FPSlider::FPSlider(Qt::Orientation orientation, int rangeBegin, int rangeEnd,
+	FPSlider::FPSlider(Qt::Orientation orientation, float rangeBegin, float rangeEnd,
 		float stepSize, QWidget* parent)
 		: QSlider(orientation, parent)
 		, mStepSize(stepSize)
@@ -39,7 +39,7 @@ namespace QTWC {
 		mStepSize = 0.01;
 	}
 
-	void FPSlider::initializeFPSlider(int rangeEnd) {
+	void FPSlider::initializeFPSlider(float rangeEnd) {
 		if (mRangeBegin >= rangeEnd) {
 			throw std::invalid_argument("rangeBegin must be smaller than rangeEnd!");
 		}
@@ -83,7 +83,7 @@ namespace QTWC {
 	void FPSlider::setCurrentValue(float value) {
 		// subtract such that value is within underlying slider range
 		// set value takes care of clamping
-		this->setValue((value - mRangeBegin) / mStepSize);
+		this->setValue(static_cast<int>((value - mRangeBegin) / mStepSize));
 	}
 
 }
