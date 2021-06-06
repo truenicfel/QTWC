@@ -48,15 +48,29 @@ namespace QTWC {
 
     void Range::setupConnections() {
         // listen to textEdited signal and both connected to textBoxChanged Method
-        connect(mLowerEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
-        connect(mUpperEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+        bool success = connect(mLowerEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+        if (!success) {
+            throw std::runtime_error("The connection did not work!");
+        }
+        success = connect(mUpperEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+        if (!success) {
+            throw std::runtime_error("The connection did not work!");
+        }
     }
 
     void Range::textBoxChanged() {
         emit rangeChanged(
-                mLowerEdit->text().toStdString(),
-                mUpperEdit->text().toStdString()
+                mLowerEdit->text(),
+                mUpperEdit->text()
         );
+    }
+
+    QLineEdit *Range::getLowerEdit() {
+        return mLowerEdit;
+    }
+
+    QLineEdit *Range::getUpperEdit() {
+        return mUpperEdit;
     }
 
 }

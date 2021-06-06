@@ -36,7 +36,7 @@ namespace QTWC {
          * @param lowerBound the current lower bound.
          * @param upperBound the current upper bound.
          */
-        void rangeChanged(const std::string& lowerBound, const std::string& upperBound);
+        void rangeChanged(const QString& lowerBound, const QString& upperBound);
 
     private slots:
 
@@ -45,6 +45,12 @@ namespace QTWC {
          * registered a change in its text.
          */
         void textBoxChanged();
+
+    protected:
+
+        QLineEdit* getLowerEdit();
+
+        QLineEdit* getUpperEdit();
 
     private:
 
