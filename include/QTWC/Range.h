@@ -28,6 +28,24 @@ namespace QTWC {
 
         ~Range() override = default;
 
+    signals:
+
+        /**
+         * This is emitted whenever the specified range changes.
+         *
+         * @param lowerBound the current lower bound.
+         * @param upperBound the current upper bound.
+         */
+        void rangeChanged(const std::string& lowerBound, const std::string& upperBound);
+
+    private slots:
+
+        /**
+         * This will be called whenever one of the line edits
+         * registered a change in its text.
+         */
+        void textBoxChanged();
+
     private:
 
         QLineEdit* mLowerEdit;
@@ -38,6 +56,12 @@ namespace QTWC {
          * Helper to initialize the range widget.
          */
         void initialize(const std::string& title);
+
+        /**
+         * Helper to setup connections from text boxes
+         * to methods.
+         */
+        void setupConnections();
 
     };
 

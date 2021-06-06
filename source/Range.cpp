@@ -9,6 +9,7 @@ QTWC::Range::Range(const std::string& title)
     , mUpperEdit(nullptr) // initialized later
 {
     initialize(title);
+    setupConnections();
 }
 
 void QTWC::Range::initialize(const std::string& title) {
@@ -41,4 +42,17 @@ void QTWC::Range::initialize(const std::string& title) {
     layout->addWidget(mLowerEdit, 1, 1, 1, 1, Qt::AlignCenter);
     layout->addWidget(upperLabel, 1, 2, 1, 1, Qt::AlignLeft | Qt::AlignVCenter);
     layout->addWidget(mUpperEdit, 1, 3, 1, 1, Qt::AlignCenter);
+}
+
+void QTWC::Range::setupConnections() {
+    // listen to textEdited signal and both connected to textBoxChanged Method
+    connect(mLowerEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+    connect(mUpperEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+}
+
+void QTWC::Range::textBoxChanged() {
+    emit rangeChanged(
+            mLowerEdit->text().toStdString(),
+            mUpperEdit->text().toStdString()
+            );
 }
