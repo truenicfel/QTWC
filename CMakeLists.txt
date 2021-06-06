@@ -49,12 +49,14 @@ endif()
 set(SOURCES
 		source/FPSlider.cpp
 		source/FancySlider.cpp
-		source/Range.cpp)
+		source/Range.cpp
+		source/IntRange.cpp)
 
 set(HEADERS
 		include/QTWC/FPSlider.h
 		include/QTWC/FancySlider.h
-		include/QTWC/Range.h)
+		include/QTWC/Range.h
+		include/QTWC/IntRange.h)
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})
 
