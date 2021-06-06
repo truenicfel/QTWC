@@ -23,21 +23,21 @@ project(${LIBRARY_NAME}
 
 set(QT_MINIMUM_VERSION 5.9.0)
 
-set(QTDIR "" CACHE STRING "Qt install path")
+set(QTWC_QTDIR "" CACHE STRING "Qt install path")
 
 
-if("${QTDIR}" STREQUAL "")
-	message(FATAL_ERROR "QTDIR variable not set! Define with -DQTDIR:String=[PATH_TO_QT]")
+if("${QTWC_QTDIR}" STREQUAL "")
+	message(FATAL_ERROR "QTWC_QTDIR variable not set! Define with -QTWC_QTDIR:String=[PATH_TO_QT]")
 endif()
 
-list(APPEND CMAKE_PREFIX_PATH ${QTDIR})
+list(APPEND CMAKE_PREFIX_PATH ${QTWC_QTDIR})
 
 # Find the necessary Qt5 modules
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 
 # Test for supported Qt version
-find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
+find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTWC_QTDIR} ENV QTDIR PATH_SUFFIXES bin)
 execute_process(COMMAND ${QMAKE_EXECUTABLE} -query QT_VERSION OUTPUT_VARIABLE QT_VERSION)
 if(QT_VERSION VERSION_LESS QT_MINIMUM_VERSION)
 	MESSAGE(FATAL_ERROR "Minimum supported Qt version: ${QT_MINIMUM_VERSION}. Installed version: ${QT_VERSION}")
@@ -47,13 +47,14 @@ endif()
 # ==================================================
 
 set(SOURCES
-    source/FPSlider.cpp
-    source/FancySlider.cpp)
+		source/FPSlider.cpp
+		source/FancySlider.cpp
+		source/Range.cpp)
 
 set(HEADERS
-    include/QTWC/FPSlider.h
-    include/QTWC/FancySlider.h
-    )
+		include/QTWC/FPSlider.h
+		include/QTWC/FancySlider.h
+		include/QTWC/Range.h)
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})
 
