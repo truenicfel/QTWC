@@ -6,9 +6,10 @@
 
 namespace QTWC {
 
-    Range::Range(const std::string& title)
+    Range::Range(const std::string& title, const QLocale& locale)
             : mLowerEdit(nullptr) // initialized later
             , mUpperEdit(nullptr) // initialized later
+            , mLocale(locale)
     {
         initialize(title);
         setupConnections();
@@ -48,17 +49,17 @@ namespace QTWC {
 
     void Range::setupConnections() {
         // listen to textEdited signal and both connected to textBoxChanged Method
-        bool success = connect(mLowerEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+        bool success = connect(mLowerEdit, &QLineEdit::returnPressed, this, &Range::userPressedReturn);
         if (!success) {
             throw std::runtime_error("The connection did not work!");
         }
-        success = connect(mUpperEdit, &QLineEdit::editingFinished, this, &Range::textBoxChanged);
+        success = connect(mUpperEdit, &QLineEdit::returnPressed, this, &Range::userPressedReturn);
         if (!success) {
             throw std::runtime_error("The connection did not work!");
         }
     }
 
-    void Range::textBoxChanged() {
+    void Range::userPressedReturn() {
         emit rangeChanged(
                 mLowerEdit->text(),
                 mUpperEdit->text()
@@ -71,6 +72,10 @@ namespace QTWC {
 
     QLineEdit *Range::getUpperEdit() {
         return mUpperEdit;
+    }
+
+    QLocale Range::getLocale() {
+        return mLocale;
     }
 
 }

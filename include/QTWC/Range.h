@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QLocale>
 
 #include <string>
 
@@ -11,7 +12,8 @@ namespace QTWC {
     /**
      * Range QWidget.
      *
-     * This widget allows to select a range.
+     * This widget allows to select a range. If the range should be
+     * submitted return must be pressed.
      */
     class Range: public QWidget {
 
@@ -23,8 +25,9 @@ namespace QTWC {
          * Create the range widget.
          *
          * @param title of the widget.
+         * @param locale redefine this if something else is needed.
          */
-        explicit Range(const std::string& title);
+        Range(const std::string& title, const QLocale& locale = QLocale::c());
 
         ~Range() override = default;
 
@@ -41,10 +44,10 @@ namespace QTWC {
     private slots:
 
         /**
-         * This will be called whenever one of the line edits
-         * registered a change in its text.
+         * This will be called whenever the user pressed return on one of the line
+         * edits.
          */
-        void textBoxChanged();
+        void userPressedReturn();
 
     protected:
 
@@ -52,11 +55,15 @@ namespace QTWC {
 
         QLineEdit* getUpperEdit();
 
+        QLocale getLocale();
+
     private:
 
         QLineEdit* mLowerEdit;
 
         QLineEdit* mUpperEdit;
+
+        QLocale mLocale;
 
         /**
          * Helper to initialize the range widget.
