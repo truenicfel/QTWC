@@ -13,7 +13,7 @@ namespace QTWC {
     const QString DoubleRange::LINE_EDIT_RED_STYLESHEET = "QLineEdit { color: red }";
 
     DoubleRange::DoubleRange(const std::string& title, const QLocale& locale)
-            : QTWC::Range(title, locale)
+            : QTWC::RangeBase(title, locale)
             , mInvalid(false)
 
     {
@@ -26,7 +26,7 @@ namespace QTWC {
     }
 
     DoubleRange::DoubleRange(const std::string &title, double minimum, double maximum, int decimals, const QLocale& locale)
-        : QTWC::Range(title, locale)
+        : QTWC::RangeBase(title, locale)
         , mInvalid(false)
     {
         QDoubleValidator* validator = new QDoubleValidator(minimum, maximum, decimals, this);
@@ -67,7 +67,7 @@ namespace QTWC {
         // connect base class rangeChanged signal with this class receiveValidatedRangeChange
         // validation in this case only validates if the input is an int and
         // in case of specified bounds if this int is within those
-        bool success = connect(this, &Range::rangeChanged, this, &DoubleRange::receiveValidatedRangeChange);
+        bool success = connect(this, &RangeBase::rangeChanged, this, &DoubleRange::receiveValidatedRangeChange);
         if (!success) {
             throw std::runtime_error("The connection did not work!");
         }
@@ -76,6 +76,11 @@ namespace QTWC {
     void DoubleRange::setDoubleRange(double lower, double upper) {
         getLowerEdit()->setText(getLocale().toString(lower));
         getUpperEdit()->setText(getLocale().toString(upper));
+    }
+
+    void DoubleRange::getCurrentRange(double& lower, double& upper) {
+        lower = getLocale().toDouble(getLowerEdit()->text());
+        upper = getLocale().toDouble(getUpperEdit()->text());
     }
 
 }

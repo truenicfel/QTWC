@@ -1,20 +1,20 @@
 #pragma once
 
-#include "QTWC/Range.h"
+#include "QTWC/RangeBase.h"
 
 namespace QTWC {
 
     /**
-     * Specialization of QTWC::Range.
+     * Specialization of QTWC::RangeBase.
      *
-     * Reimplemements Range such that only integers are valid
+     * Reimplemements RangeBase such that only integers are valid
      * input. Additionally it is possible to set a maximum size
      * for the range.
      *
      * Furthermore it is enforced that lower bound will always be smaller
      * than upper bound.
      */
-    class IntRange: public Range {
+    class IntRange: public RangeBase {
 
         Q_OBJECT
 
@@ -53,7 +53,7 @@ namespace QTWC {
     private slots:
 
         /**
-         * This is connected to the underlying Range::rangeChanged method.
+         * This is connected to the underlying RangeBase::rangeChanged method.
          *
          * When this is called we know that a "valid" (two ints within bounds
          * detected). Additional checks are required to ensure that lowerBound

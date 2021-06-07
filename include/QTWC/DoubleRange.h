@@ -1,20 +1,20 @@
 #pragma once
 
-#include "QTWC/Range.h"
+#include "QTWC/RangeBase.h"
 
 namespace QTWC {
 
     /**
-     * Specialization of QTWC::Range.
+     * Specialization of QTWC::RangeBase.
      *
-     * Reimplemements Range such that only doubles are valid
+     * Reimplemements RangeBase such that only doubles are valid
      * input. Additionally it is possible to set a maximum size
      * for the range.
      *
      * Furthermore it is enforced that lower bound will always be smaller
      * than upper bound.
      */
-    class DoubleRange: public Range {
+    class DoubleRange: public RangeBase {
 
         Q_OBJECT
 
@@ -48,6 +48,14 @@ namespace QTWC {
 
         void setDoubleRange(double lower, double upper);
 
+        /**
+         * Get the current range.
+         *
+         * @param lower out parameter.
+         * @param upper out parameter.
+         */
+        void getCurrentRange(double& lower, double& upper);
+
     signals:
 
         /**
@@ -61,7 +69,7 @@ namespace QTWC {
     private slots:
 
         /**
-         * This is connected to the underlying Range::rangeChanged method.
+         * This is connected to the underlying RangeBase::rangeChanged method.
          *
          * When this is called we know that a "valid" (two doubles within bounds
          * detected). Additional checks are required to ensure that lowerBound

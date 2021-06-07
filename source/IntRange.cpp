@@ -13,7 +13,7 @@ namespace QTWC {
     const QString IntRange::LINE_EDIT_RED_STYLESHEET = "QLineEdit { color: red }";
 
     IntRange::IntRange(const std::string& title, const QLocale& locale)
-            : QTWC::Range(title, locale)
+            : QTWC::RangeBase(title, locale)
             , mInvalid(false)
 
     {
@@ -23,7 +23,7 @@ namespace QTWC {
     }
 
     IntRange::IntRange(const std::string &title, int minimum, int maximum, const QLocale& locale)
-        : QTWC::Range(title, locale)
+        : QTWC::RangeBase(title, locale)
         , mInvalid(false)
     {
         QIntValidator* validator = new QIntValidator(minimum, maximum, this);
@@ -61,7 +61,7 @@ namespace QTWC {
         // connect base class rangeChanged signal with this class receiveValidatedRangeChange
         // validation in this case only validates if the input is an int and
         // in case of specified bounds if this int is within those
-        bool success = connect(this, &Range::rangeChanged, this, &IntRange::receiveValidatedRangeChange);
+        bool success = connect(this, &RangeBase::rangeChanged, this, &IntRange::receiveValidatedRangeChange);
         if (!success) {
             throw std::runtime_error("The connection did not work!");
         }

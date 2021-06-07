@@ -1,4 +1,4 @@
-#include "QTWC/Range.h"
+#include "QTWC/RangeBase.h"
 
 #include <QGridLayout>
 #include <QLabel>
@@ -6,7 +6,7 @@
 
 namespace QTWC {
 
-    Range::Range(const std::string& title, const QLocale& locale)
+    RangeBase::RangeBase(const std::string& title, const QLocale& locale)
             : mLowerEdit(nullptr) // initialized later
             , mUpperEdit(nullptr) // initialized later
             , mLocale(locale)
@@ -15,7 +15,7 @@ namespace QTWC {
         setupConnections();
     }
 
-    void Range::initialize(const std::string& title) {
+    void RangeBase::initialize(const std::string& title) {
 
         // the main layout of this widget:
         //  - title row with a title label in it (spanning 4 columns)
@@ -47,34 +47,34 @@ namespace QTWC {
         layout->addWidget(mUpperEdit, 1, 3, 1, 1, Qt::AlignCenter);
     }
 
-    void Range::setupConnections() {
+    void RangeBase::setupConnections() {
         // listen to textEdited signal and both connected to textBoxChanged Method
-        bool success = connect(mLowerEdit, &QLineEdit::returnPressed, this, &Range::userPressedReturn);
+        bool success = connect(mLowerEdit, &QLineEdit::returnPressed, this, &RangeBase::userPressedReturn);
         if (!success) {
             throw std::runtime_error("The connection did not work!");
         }
-        success = connect(mUpperEdit, &QLineEdit::returnPressed, this, &Range::userPressedReturn);
+        success = connect(mUpperEdit, &QLineEdit::returnPressed, this, &RangeBase::userPressedReturn);
         if (!success) {
             throw std::runtime_error("The connection did not work!");
         }
     }
 
-    void Range::userPressedReturn() {
+    void RangeBase::userPressedReturn() {
         emit rangeChanged(
                 mLowerEdit->text(),
                 mUpperEdit->text()
         );
     }
 
-    QLineEdit *Range::getLowerEdit() {
+    QLineEdit* RangeBase::getLowerEdit() {
         return mLowerEdit;
     }
 
-    QLineEdit *Range::getUpperEdit() {
+    QLineEdit* RangeBase::getUpperEdit() {
         return mUpperEdit;
     }
 
-    QLocale Range::getLocale() {
+    QLocale RangeBase::getLocale() {
         return mLocale;
     }
 

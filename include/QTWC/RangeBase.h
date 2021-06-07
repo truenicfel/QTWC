@@ -10,12 +10,12 @@ class QLineEdit;
 namespace QTWC {
 
     /**
-     * Range QWidget.
+     * RangeBase QWidget.
      *
      * This widget allows to select a range. If the range should be
      * submitted return must be pressed.
      */
-    class Range: public QWidget {
+    class RangeBase: public QWidget {
 
         Q_OBJECT
 
@@ -27,9 +27,9 @@ namespace QTWC {
          * @param title of the widget.
          * @param locale redefine this if something else is needed.
          */
-        Range(const std::string& title, const QLocale& locale = QLocale::c());
+        explicit RangeBase(const std::string& title, const QLocale& locale = QLocale::c());
 
-        ~Range() override = default;
+        ~RangeBase() override = default;
 
     signals:
 

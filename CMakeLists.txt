@@ -49,14 +49,14 @@ endif()
 set(SOURCES
 		source/FPSlider.cpp
 		source/FancySlider.cpp
-		source/Range.cpp
+		source/RangeBase.cpp
 		source/IntRange.cpp
 		source/DoubleRange.cpp)
 
 set(HEADERS
 		include/QTWC/FPSlider.h
 		include/QTWC/FancySlider.h
-		include/QTWC/Range.h
+		include/QTWC/RangeBase.h
 		include/QTWC/IntRange.h
 		include/QTWC/DoubleRange.h)
 
