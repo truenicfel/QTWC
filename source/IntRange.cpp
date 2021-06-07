@@ -12,8 +12,8 @@ namespace QTWC {
 
     const QString IntRange::LINE_EDIT_RED_STYLESHEET = "QLineEdit { color: red }";
 
-    IntRange::IntRange(const std::string& title)
-            : QTWC::Range(title)
+    IntRange::IntRange(const std::string& title, const QLocale& locale)
+            : QTWC::Range(title, locale)
             , mInvalid(false)
 
     {
@@ -22,8 +22,8 @@ namespace QTWC {
         intRangeSetupConnections();
     }
 
-    IntRange::IntRange(const std::string &title, int minimum, int maximum)
-        : QTWC::Range(title)
+    IntRange::IntRange(const std::string &title, int minimum, int maximum, const QLocale& locale)
+        : QTWC::Range(title, locale)
         , mInvalid(false)
     {
         QIntValidator* validator = new QIntValidator(minimum, maximum, this);

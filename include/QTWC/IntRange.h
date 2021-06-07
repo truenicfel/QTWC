@@ -24,8 +24,9 @@ namespace QTWC {
          * Construct the int range.
          *
          * @param title displayed title of widget.
+         * @param locale redefine this if something else is needed.
          */
-        IntRange(const std::string& title);
+        explicit IntRange(const std::string& title, const QLocale& locale = QLocale::c());
 
         /**
          * Construct int range.
@@ -33,8 +34,9 @@ namespace QTWC {
          * @param title displayed title of widget.
          * @param minimum lower bound of range.
          * @param maximum upper bound of range.
+         * @param locale redefine this if something else is needed.
          */
-        IntRange(const std::string& title, int minimum, int maximum);
+        IntRange(const std::string& title, int minimum, int maximum, const QLocale& locale = QLocale::c());
 
         ~IntRange() override = default;
 
