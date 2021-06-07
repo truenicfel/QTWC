@@ -14,26 +14,20 @@ namespace QTWC {
 
     IntRange::IntRange(const std::string& title)
             : QTWC::Range(title)
-            , mValidator(new QIntValidator(this))
-            , mMinimum(std::numeric_limits<int>::min())
-            , mMaximum(std::numeric_limits<int>::max())
-            , mRedLower(false)
-            , mRedUpper(false)
+            , mInvalid(false)
 
     {
-        getLowerEdit()->setValidator(mValidator);
+        QIntValidator* validator = new QIntValidator(this);
+        getLowerEdit()->setValidator(validator);
         intRangeSetupConnections();
     }
 
     IntRange::IntRange(const std::string &title, int minimum, int maximum)
         : QTWC::Range(title)
-        , mValidator(new QIntValidator(minimum, maximum, this))
-        , mMinimum(minimum)
-        , mMaximum(maximum)
-        , mRedLower(false)
-        , mRedUpper(false)
+        , mInvalid(false)
     {
-        getLowerEdit()->setValidator(mValidator);
+        QIntValidator* validator = new QIntValidator(minimum, maximum, this);
+        getLowerEdit()->setValidator(validator);
         intRangeSetupConnections();
     }
 
@@ -47,23 +41,20 @@ namespace QTWC {
             emit intRangeChanged(lower, upper);
 
             // if red previously we can change back to black
-            if (mRedLower) {
+            if (mInvalid) {
                 getLowerEdit()->setStyleSheet(LINE_EDIT_BLACK_STYLESHEET);
-            }
-            if (mRedUpper) {
                 getUpperEdit()->setStyleSheet(LINE_EDIT_BLACK_STYLESHEET);
+                mInvalid = false;
             }
+
         } else {
             // range can't know which one is wrong so both will be
-            changeFontToRed(getLowerEdit());
-            changeFontToRed(getUpperEdit());
+            getLowerEdit()->setStyleSheet(LINE_EDIT_RED_STYLESHEET);
+            getUpperEdit()->setStyleSheet(LINE_EDIT_RED_STYLESHEET);
+            mInvalid = true;
         }
 
 
-    }
-
-    void IntRange::changeFontToRed(QLineEdit* lineEdit) {
-        lineEdit->setStyleSheet(LINE_EDIT_RED_STYLESHEET);
     }
 
     void IntRange::intRangeSetupConnections() {

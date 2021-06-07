@@ -2,8 +2,6 @@
 
 #include "QTWC/Range.h"
 
-class QValidator;
-
 namespace QTWC {
 
     /**
@@ -66,28 +64,14 @@ namespace QTWC {
 
     private:
 
-        QValidator* mValidator;
-
-        int mMinimum;
-
-        int mMaximum;
-
         /**
-         * States if lower line edit is red currently.
+         * States if the color of the line edits is red currently.
          */
-        bool mRedLower;
-
-        /**
-         * States if upper line edit is red currently.
-         */
-        bool mRedUpper;
-
-        void changeFontToRed(QLineEdit* lineEdit);
+        bool mInvalid;
 
         void intRangeSetupConnections();
 
         // style sheets
-
         const static QString LINE_EDIT_BLACK_STYLESHEET;
         const static QString LINE_EDIT_RED_STYLESHEET;
 
