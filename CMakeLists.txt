@@ -35,6 +35,7 @@ list(APPEND CMAKE_PREFIX_PATH ${QTWC_QTDIR})
 # Find the necessary Qt5 modules
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5QuickWidgets REQUIRED)
 
 # Test for supported Qt version
 find_program(QMAKE_EXECUTABLE NAMES qmake HINTS ${QTWC_QTDIR} ENV QTDIR PATH_SUFFIXES bin)
@@ -51,14 +52,16 @@ set(SOURCES
 		source/FancySlider.cpp
 		source/RangeBase.cpp
 		source/IntRange.cpp
-		source/DoubleRange.cpp)
+		source/DoubleRange.cpp
+		source/RangeSlider.cpp)
 
 set(HEADERS
 		include/QTWC/FPSlider.h
 		include/QTWC/FancySlider.h
 		include/QTWC/RangeBase.h
 		include/QTWC/IntRange.h
-		include/QTWC/DoubleRange.h)
+		include/QTWC/DoubleRange.h
+		include/QTWC/RangeSlider.h)
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})
 
@@ -68,6 +71,15 @@ set_target_properties(${LIBRARY_NAME}
      AUTOUIC TRUE
      CMAKE_INCLUDE_CURRENT_DIR TRUE)
 
+set(RANGE_SLIDER_HORIZONTAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/HorizontalRangeSlider.qml)
+set(RANGE_SLIDER_VERTICAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/VerticalRangeSlider.qml)
+configure_file (
+		"configure/QMLPaths.h.in"
+		"${CMAKE_CURRENT_BINARY_DIR}/include/QMLPaths.h"
+)
+
 target_include_directories(${LIBRARY_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_link_libraries(${LIBRARY_NAME} PUBLIC Qt5::Core Qt5::Widgets)
+target_include_directories(${LIBRARY_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/include)
+
+target_link_libraries(${LIBRARY_NAME} PUBLIC Qt5::Core Qt5::Widgets Qt5::QuickWidgets)
