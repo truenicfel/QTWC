@@ -23,6 +23,9 @@ namespace QTWC {
         // set the title
         QQmlProperty::write(rootObject(), "titleText", title.c_str());
 
+        QQmlProperty::write(rootObject(), "fromValue", rangeBegin);
+        QQmlProperty::write(rootObject(), "toValue", rangeEnd);
+
         // extract a list of items below the slider
         auto* slider = rootObject()->findChild<QQuickItem *>("slider");
         const QList<QQuickItem *>& list = slider->childItems();

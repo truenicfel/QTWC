@@ -7,6 +7,8 @@ Rectangle {
     color: "white"
     property alias firstValue: slider.first.value
     property alias secondValue: slider.second.value
+    property alias fromValue: slider.from
+    property alias toValue: slider.to
     property int labelPrecision: 4
     property string titleText: "Title"
 
