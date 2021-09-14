@@ -53,7 +53,8 @@ set(SOURCES
 		source/RangeBase.cpp
 		source/IntRange.cpp
 		source/DoubleRange.cpp
-		source/RangeSlider.cpp)
+		source/RangeSlider.cpp
+		source/OptionGrid.cpp)
 
 set(HEADERS
 		include/QTWC/FPSlider.h
@@ -61,7 +62,8 @@ set(HEADERS
 		include/QTWC/RangeBase.h
 		include/QTWC/IntRange.h
 		include/QTWC/DoubleRange.h
-		include/QTWC/RangeSlider.h)
+		include/QTWC/RangeSlider.h
+		include/QTWC/OptionGrid.h)
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})
 
@@ -73,6 +75,7 @@ set_target_properties(${LIBRARY_NAME}
 
 set(RANGE_SLIDER_HORIZONTAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/HorizontalRangeSlider.qml)
 set(RANGE_SLIDER_VERTICAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/VerticalRangeSlider.qml)
+set(OPTION_GRID_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/SwitchWithId.qml)
 configure_file (
 		"configure/QMLPaths.h.in"
 		"${CMAKE_CURRENT_BINARY_DIR}/include/QMLPaths.h"
