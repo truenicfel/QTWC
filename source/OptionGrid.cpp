@@ -68,4 +68,10 @@ namespace QTWC {
         QQmlProperty::write(mOptions[option]->rootObject(), "checked", newState);
     }
 
+    void OptionGrid::setFontSize(int fontSize) {
+        for (auto& mOption : mOptions) {
+            QQmlProperty::write(mOption.second->rootObject(), "fontSize", fontSize);
+        }
+    }
+
 }

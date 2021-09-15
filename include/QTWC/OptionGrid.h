@@ -43,6 +43,13 @@ namespace QTWC {
 		 */
 		void setState(const std::string& option, bool newState);
 
+		/**
+		 * Set the font size on ALL options.
+		 *
+		 * @param fontSize
+		 */
+		void setFontSize(int fontSize);
+
     signals:
 
 	    /**
