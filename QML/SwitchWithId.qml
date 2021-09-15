@@ -5,7 +5,7 @@ Switch {
     id: control
     property string optionText: "Option"
     property int identificator: 0
-    property double fontSize: 6
+    property double fontSize: 8
     property string backgroundColor: "#e6e6e6"
 
     signal stateChanged(int identificator, bool position)
@@ -27,6 +27,10 @@ Switch {
         color: control.checked ? "#173796" : "#ffffff"
         border.color: control.checked ? "#173796" : "#cccccc"
 
+        anchors.left: control.left
+        anchors.verticalCenter: control.verticalCenter
+        anchors.leftMargin: 3
+
         Rectangle {
             x: control.checked ? parent.width - width : 0
             y: parent.height / 2 - height / 2
@@ -42,8 +46,9 @@ Switch {
         text: control.text
         font.pointSize: fontSize
         color: "black"
-        verticalAlignment: Text.AlignVCenter
-        leftPadding: control.indicator.width + control.spacing
+        anchors.left: control.indicator.right
+        anchors.verticalCenter: control.verticalCenter
+        anchors.leftMargin: 3
     }
 
 }
