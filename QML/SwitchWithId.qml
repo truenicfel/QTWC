@@ -5,6 +5,8 @@ Switch {
     id: control
     property string optionText: "Option"
     property int identificator: 0
+    property double fontSize: 6
+    property string backgroundColor: "#e6e6e6"
 
     signal stateChanged(int identificator, bool position)
 
@@ -13,7 +15,7 @@ Switch {
     text: qsTr(optionText)
 
     background: Rectangle {
-        color: "#e6e6e6"
+        color: backgroundColor
     }
 
     indicator: Rectangle {
@@ -38,7 +40,7 @@ Switch {
 
     contentItem: Text {
         text: control.text
-        font.pointSize: 6
+        font.pointSize: fontSize
         color: "black"
         verticalAlignment: Text.AlignVCenter
         leftPadding: control.indicator.width + control.spacing

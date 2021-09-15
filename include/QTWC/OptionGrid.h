@@ -48,7 +48,7 @@ namespace QTWC {
 		 *
 		 * @param fontSize
 		 */
-		void setFontSize(int fontSize);
+		void setFontSize(double fontSize);
 
     signals:
 
