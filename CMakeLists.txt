@@ -54,7 +54,8 @@ set(SOURCES
 		source/IntRange.cpp
 		source/DoubleRange.cpp
 		source/RangeSlider.cpp
-		source/OptionGrid.cpp)
+		source/OptionGrid.cpp
+		source/ContextMenuEventWrapper.cpp)
 
 set(HEADERS
 		include/QTWC/FPSlider.h
@@ -63,7 +64,8 @@ set(HEADERS
 		include/QTWC/IntRange.h
 		include/QTWC/DoubleRange.h
 		include/QTWC/RangeSlider.h
-		include/QTWC/OptionGrid.h)
+		include/QTWC/OptionGrid.h
+		include/QTWC/ContextMenuEventWrapper.h)
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})
 
