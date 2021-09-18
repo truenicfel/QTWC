@@ -27,6 +27,16 @@ namespace QTWC {
 
 		~Slider() override = default;
 
+        /**
+         * Set the slider value.
+         *
+         * Value should be larger than range begin and smaller than range end otherwise the value
+         * is clamped to range begin or end.
+         *
+         * @param value
+         */
+        void setSliderValue(double value);
+
     signals:
 
         /**
@@ -39,6 +49,12 @@ namespace QTWC {
 	private slots:
 
         void receiveMoved(const double& value);
+
+    private:
+
+        const double mRangeBegin;
+
+        const double mRangeEnd;
 
 	};
 

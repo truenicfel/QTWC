@@ -5,11 +5,12 @@
 
 #include "QMLPaths.h"
 
-#include <iostream>
-
 namespace QTWC {
 
-	Slider::Slider(double rangeBegin, double rangeEnd, const std::string& title) {
+	Slider::Slider(double rangeBegin, double rangeEnd, const std::string& title)
+    : mRangeBegin(rangeBegin)
+    , mRangeEnd(rangeEnd)
+    {
 
         setResizeMode(QQuickWidget::SizeRootObjectToView);
         setSource(QUrl::fromLocalFile(SLIDER_HORIZONTAL_QML));
@@ -46,7 +47,16 @@ namespace QTWC {
 	}
 
     void Slider::receiveMoved(const double& value) {
-        std::cout << "value: " << value << std::endl;
         emit sliderValueChanged(value);
+    }
+
+    void Slider::setSliderValue(double value) {
+        if (value < mRangeBegin) {
+            QQmlProperty::write(rootObject(), "value", mRangeBegin);
+        } else if (value > mRangeEnd) {
+            QQmlProperty::write(rootObject(), "value", mRangeEnd);
+        } else {
+            QQmlProperty::write(rootObject(), "value", value);
+        }
     }
 }
