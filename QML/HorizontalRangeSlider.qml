@@ -4,7 +4,7 @@ import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     id: rangeSliderRoot
-    color: "white"
+    color: "#e6e6e6"
     property alias firstValue: slider.first.value
     property alias secondValue: slider.second.value
     property alias fromValue: slider.from
