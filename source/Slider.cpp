@@ -59,4 +59,8 @@ namespace QTWC {
             QQmlProperty::write(rootObject(), "value", value);
         }
     }
+
+    double Slider::getSliderValue() {
+        return QQmlProperty::read(rootObject(), "value").toDouble();
+    }
 }

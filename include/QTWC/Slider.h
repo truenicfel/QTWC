@@ -37,6 +37,13 @@ namespace QTWC {
          */
         void setSliderValue(double value);
 
+        /**
+         * Get the slider value.
+         *
+         * @return value
+         */
+        double getSliderValue();
+
     signals:
 
         /**
