@@ -56,7 +56,8 @@ set(SOURCES
 		source/RangeSlider.cpp
 		source/OptionGrid.cpp
 		source/ContextMenuEventWrapper.cpp
-		source/Slider.cpp)
+		source/Slider.cpp
+		source/ProgressBar.cpp)
 
 set(HEADERS
 		include/QTWC/FPSlider.h
@@ -67,7 +68,8 @@ set(HEADERS
 		include/QTWC/RangeSlider.h
 		include/QTWC/OptionGrid.h
 		include/QTWC/ContextMenuEventWrapper.h
-		include/QTWC/Slider.h)
+		include/QTWC/Slider.h
+		include/QTWC/ProgressBar.h)
 
 add_library(${LIBRARY_NAME} ${SOURCES} ${HEADERS})
 
@@ -81,6 +83,7 @@ set(RANGE_SLIDER_HORIZONTAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/HorizontalR
 set(RANGE_SLIDER_VERTICAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/VerticalRangeSlider.qml)
 set(OPTION_GRID_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/SwitchWithId.qml)
 set(SLIDER_HORIZONTAL_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/HorizontalSlider.qml)
+set(HORIZONTAL_PROGRESS_BAR_QML_PATH ${CMAKE_CURRENT_SOURCE_DIR}/QML/HorizontalProgressBar.qml)
 configure_file (
 		"configure/QMLPaths.h.in"
 		"${CMAKE_CURRENT_BINARY_DIR}/include/QMLPaths.h"
