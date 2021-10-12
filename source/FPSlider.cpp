@@ -1,6 +1,6 @@
 #include "QTWC/FPSlider.h"
 
-#include <exception>
+#include <stdexcept>
 
 #include <QSignalBlocker>
 

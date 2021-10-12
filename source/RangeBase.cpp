@@ -4,6 +4,8 @@
 #include <QLabel>
 #include <QLineEdit>
 
+#include <stdexcept>
+
 namespace QTWC {
 
     RangeBase::RangeBase(const std::string& title, const QLocale& locale)

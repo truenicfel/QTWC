@@ -3,6 +3,8 @@
 #include <QQuickItem>
 #include <QQmlProperty>
 
+#include <stdexcept>
+
 #include "QMLPaths.h"
 
 namespace QTWC {

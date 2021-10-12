@@ -5,6 +5,7 @@
 #include <QFont>
 
 #include <limits>
+#include <stdexcept>
 
 namespace QTWC {
 
