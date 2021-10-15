@@ -26,7 +26,7 @@ Rectangle {
         }
 
         Text {
-            text: round(currentProgress) + "%"
+            text: round(currentProgress) * 100.0 + "%"
             anchors.horizontalCenter: control.horizontalCenter
             anchors.verticalCenter: control.verticalCenter
             anchors.verticalCenterOffset: 20
