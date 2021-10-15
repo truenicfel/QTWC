@@ -29,7 +29,7 @@ namespace QTWC {
 
     void ProgressBar::setProgress(const double& progress) {
         mProgress = std::max(std::min(progress, mEnd), mStart);
-        double progressInPercent = (mProgress - mStart) / (mEnd - mStart);
+        double progressInPercent = (mProgress - mStart) / (mEnd - mStart) * 100.0;
         // set the progress
         QQmlProperty::write(rootObject(), QString("currentProgress"), progressInPercent);
 
